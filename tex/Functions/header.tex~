@@ -1,0 +1,15 @@
+\usepackage[a4paper,width=18cm,height=25cm]{geometry}
+\usepackage{amssymb}
+\usepackage{parskip}
+\usepackage{amsmath}
+\usepackage{fancyhdr}
+%\usepackage{siunitx}
+\usepackage[T1]{fontenc}
+\usepackage[latin1]{inputenc}
+\usepackage[hidelinks]{hyperref}
+\usepackage{etoolbox}
+\usepackage{lscape}
+\usepackage[americanvoltages,europeancurrents]{circuitikz}
+\usepackage{xparse}
+\usepackage{ifthen}
+\pagestyle{fancy}
