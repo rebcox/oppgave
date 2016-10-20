@@ -39,31 +39,39 @@ dc = hmrOD2Conc( dod_filt, SD, ppf );
 %%
 readMotionFile;
 
-
 %%
 trigger4 = find(s(:,4)==1 , 8);
 endOfAuto = trigger4(8)+400;
 %Delta concentration for autonomous driving
-dc_auto = dc(trigger4(1)-200:endOfAuto, :,:);
-s_auto = s(trigger4(1)-200:endOfAuto, :);
+dc_auto = dc(trigger4(1):endOfAuto, :,:);
+s_auto = s(trigger4(1):endOfAuto, :);
+
+%dc_auto = dc(trigger4(1)-200:endOfAuto, :,:);
+%s_auto = s(trigger4(1)-200:endOfAuto, :);
 
 hbo=squeeze(dc_auto(:,1,:));
 hbr=squeeze(dc_auto(:,2,:));
 hbt=squeeze(dc_auto(:,3,:));
 
 %%
+%1:LOOKLEFT, 2:LOOKRIGHT, 3:LOOKDOWN, 4:LOOKUP, 5:YAWN
 hold on
-for i=1:length(motions)
-    if (motions(i,2) == 1)
-        area([motions(i,1) motions(i,1)+1], [0.00003, 0.00003], 'FaceColor', 'y', 'LineStyle', 'none');
-    elseif (motions(i,2) == 2)
-        area([motions(i,1) motions(i,1)+1], [0.00003, 0.00003], 'FaceColor', 'r', 'LineStyle', 'none');
-    elseif (motions(i,2) == 3)
-        area([motions(i,1) motions(i,1)+1], [0.00003, 0.00003], 'FaceColor', 'b', 'LineStyle', 'none');
-    elseif (motions(i,2) == 4)
-        area([motions(i,1) motions(i,1)+1], [0.00003, 0.00003], 'FaceColor', 'g', 'LineStyle', 'none');
-    elseif (motions(i,2) == 5)
-        area([motions(i,1) motions(i,1)+1], [0.00003, 0.00003], 'FaceColor', 'm', 'LineStyle', 'none');
+for i=1:size(motions,1)
+    if (motions(i,3) == 1)
+        area([motions(i,1) motions(i,2)], [0.00003, 0.00003], 'FaceColor', 'y', 'LineStyle', 'none');
+        area([motions(i,1) motions(i,2)], [-0.00003, -0.00003], 'FaceColor', 'y', 'LineStyle', 'none');
+    elseif (motions(i,3) == 2)
+        area([motions(i,1) motions(i,2)], [0.00003, 0.00003], 'FaceColor', 'r', 'LineStyle', 'none');
+        area([motions(i,1) motions(i,2)], [-0.00003, -0.00003], 'FaceColor', 'r', 'LineStyle', 'none');
+    elseif (motions(i,3) == 3)
+        area([motions(i,1) motions(i,2)], [0.00003, 0.00003], 'FaceColor', 'c', 'LineStyle', 'none');
+        area([motions(i,1) motions(i,2)], [-0.00003, -0.00003], 'FaceColor', 'c', 'LineStyle', 'none');
+    elseif (motions(i,3) == 4)
+        area([motions(i,1) motions(i,2)], [0.00003, 0.00003], 'FaceColor', 'g', 'LineStyle', 'none');
+        area([motions(i,1) motions(i,2)], [-0.00003, -0.00003], 'FaceColor', 'g', 'LineStyle', 'none');
+    elseif (motions(i,3) == 5)
+        area([motions(i,1) motions(i,2)], [0.00003, 0.00003], 'FaceColor', 'm', 'LineStyle', 'none');
+        area([motions(i,1) motions(i,2)], [-0.00003, -0.00003], 'FaceColor', 'm', 'LineStyle', 'none');
     end
 end
 %%
@@ -73,12 +81,26 @@ if (displayAll)
     for i=1:size(hbo,2)
         subplot(5,4,i)
         hold on
-        plot(hbo(:,i))
+        
+        hboPlot = plot(hbo(:,i));
+        hboPlot.LineWidth = 2;
         plot(s_for_plot)
     end
 else
        % hold on
-        plot(hbo(:,13))
+        hboPlot = plot(hbo(:,13));
+        hboPlot.LineWidth = 2;
         %Triggers
         plot(s_for_plot) 
+end
+
+%%
+[noFrames, noChannels] = size(hbo);
+actionAllFrames = zeros(noFrames, 1);
+noMotions = size(motions,1);
+for i=1:noMotions
+    startFrame = motions(i,1);
+    endFrame = motions(i,2);
+    motion = motions(i,3);
+    actionAllFrames(startFrame:endFrame,1)=motion;
 end

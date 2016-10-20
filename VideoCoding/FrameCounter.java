@@ -10,6 +10,7 @@ import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
@@ -21,6 +22,7 @@ import javafx.util.Duration;
 public class FrameCounter extends Application{
   
    private List<Action> actions;
+   private List<Action> tempActions;
    private Scene scene;
    private Timestamp startTimeStamp;
    private Media media;
@@ -29,11 +31,15 @@ public class FrameCounter extends Application{
    private MediaView mediaView;
    static Timestamp pauseStart;
    private List<Pause> pauseList;
+   private String filenameForMatlab = "motionData.txt"; 
+   private double frequency = 7.8125;
+   private long startFrame = 0;
 
    @Override
    public void init()
    {
       actions = new ArrayList<Action>();
+      tempActions = new ArrayList<Action>();
       pauseStart = new Timestamp(0);
       pauseList = new ArrayList<Pause>();
    }
@@ -42,7 +48,7 @@ public class FrameCounter extends Application{
    public void start(Stage primaryStage)
    {
       startTimeStamp = new Timestamp(System.currentTimeMillis());
-      media = new Media(new File("/Users/rebeccacox/Dropbox/Prosjektoppgave/Catwoman/FrameNumberCounter/CatWoman.mp4").toURI().toString());
+      media = new Media(new File("/Users/rebeccacox/GitHub/oppgave/VideoCoding/CatWoman.mp4").toURI().toString());
       //Duration startTime = Duration.minutes(31);
       startTime = Duration.seconds(1);
 
@@ -85,10 +91,24 @@ public class FrameCounter extends Application{
                      System.out.println("Space pressed"); 
                      break;
                 }
-               actions.add(action);
+               tempActions.add(action);
             }
         });
-      primaryStage.setTitle("Video");
+      scene.setOnKeyReleased(new EventHandler<KeyEvent>() {
+         @Override
+         public void handle(KeyEvent event) {
+            switch(event.getCode()){
+               case UP: case DOWN: case LEFT: case RIGHT: case SPACE:
+                  Timestamp startTime = tempActions.get(0).getTimestamp();
+                  Duration duration = new Duration(System.currentTimeMillis()-startTime.getTime());
+                  actions.add(new Action(startTime, tempActions.get(0).getMovement(), duration));
+                  tempActions.clear();
+                  break;
+            }
+         }
+      });
+
+      primaryStage.setTitle("Catwoman");
       //primaryStage.setFullScreen(true);
       primaryStage.setScene(scene);
       primaryStage.show();
@@ -96,9 +116,7 @@ public class FrameCounter extends Application{
 
    @Override
    public void stop(){
-      ActionsForMatlab actionsForMatlab = new ActionsForMatlab(actions, startTimeStamp, 7.8125, 0, pauseList); //Change these numbers
-      System.out.println("Number of events: " + actions.size());
-      actionsForMatlab.writeToFile("motionData.txt");
+      ActionsForMatlab actionsForMatlab = new ActionsForMatlab(actions, startTimeStamp, frequency, startFrame, pauseList);
    }
 
    private HBox addToolBar() {

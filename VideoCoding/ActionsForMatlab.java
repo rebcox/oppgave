@@ -42,11 +42,15 @@ public class ActionsForMatlab{
    }
    private boolean actionInAPause(Action action){
       for (Pause pause : pauseList) {
-         if (pause.getStart().before(action.getTimestamp()) && pause.getEnd().after(action.getTimestamp())) {
+         if (pause.getStart().before(action.getStartTime()) && pause.getEnd().after(action.getStartTime())) {
             return true;
          }
       }
       return false;
+   }
+
+   private long endFrameNumber(Action action){
+      return frameNumber(new Timestamp(action.getStartTime().getTime() + (long)action.getDuration().toMillis())); 
    }
 
    public void writeToFile(String fileName)
@@ -62,7 +66,9 @@ public class ActionsForMatlab{
 
       for (Action action : actions) {
          if (!actionInAPause(action)){
-            writer.println(frameNumber(action.getTimestamp()) + " " + action.getMovement().name());  
+            //writer.println(frameNumber(action.getTimestamp()) + " " + action.getMovement().name());  
+            writer.println(frameNumber(action.getStartTime()) + " " + endFrameNumber(action) + " " + action.getMovement().name());  
+
          }
       }
 
