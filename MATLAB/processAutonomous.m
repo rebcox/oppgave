@@ -1,106 +1,46 @@
-clear all;
+clear;
 clc;
 nirsFile =  'cw012.nirs';
-%
 load(nirsFile,'-mat');
-%% 
-% coverting the wavelength data to Optical Density
-dod = hmrIntensity2OD(d);
-
-% This is the time to run the script that changes the time stamps from the
-% original format to what is actually needed.
-ScripttoChangeTimeStamps();
-
-%%
-% Band-pass filtering
+%Variables
 fs = 1/(t(2)-t(1));  % sampling frequency of the data
-lpf = 0.5; % in Hz
-hpf = 0.01; % in Hz
-dod_filt = hmrBandpassFilt(dod, fs, hpf, lpf);
+lpf = 0.5; % in Hz for bandpass filter
+hpf = 0.01; % in Hz for bandpass filter
+ppf = [6 6]; % partial pathlength factors for each wavelength.
+
+%coverting the wavelength data to delta Optical Density
+dod = hmrIntensity2OD(d);
+ScripttoChangeTimeStamps();
+readMotionFile;
+[s_auto, dod_auto] = findAutonomousPart(s,dod);
+%%
+%*******Plot delta optical density without bandpass filter*******%
+%magnitude = max(max(dod_auto));
+magnitude = 0.15;
+plotDataWithMotion(dod_auto, motions, s_auto, magnitude, false, 'DOD without bandpass filter');
 
 %% 
-% Convert changes in OD to changes in concentrations (HbO, HbR, and HbT)
-ppf = [6 6]; % partial pathlength factors for each wavelength.
-dc = hmrOD2Conc( dod_filt, SD, ppf );
-%dcWithoutBandPass = hmrOD2Conc( dod, SD, ppf );
-%%
-% trigger4 = find(s(:,4)==1 , 8);
-% endOfAuto = trigger4(8)+400;
-%dod_filt_auto = dod_filt(trigger4(1):endOfAuto, :);
-%s_auto = s(trigger4(1):endOfAuto, :);
-
+%*******Plot concentration without bandpass filter*******%
+[hbo, hbr, hbt] = convertToConcentratrions(dod_auto, SD, ppf);
+%[s_auto, hbo_auto] = findAutonomousPart(s,hbo);
+%magnitude = max(max(dod_auto));
+magnitude = 0.00004;
+plotDataWithMotion(hbo, motions, s_auto, magnitude, false, 'Concentration without bandpass filter');
 
 %%
-
-%hold on
-%plot(s_auto)
-%plot(dod_filt_auto(:,1))
+%*******Band-pass filtering*******%
+dod_auto_filt = hmrBandpassFilt(dod_auto, fs, hpf, lpf);
 
 %%
-readMotionFile;
+%*******Plot delta optical density after bandpass filter*******%
+%magnitude = max(max(dod_auto_filt));
+magnitude = 0.15;
+plotDataWithMotion(dod_auto_filt, motions, s_auto, magnitude, false, 'OD after bandpass filter');
 
 %%
-trigger4 = find(s(:,4)==1 , 8);
-endOfAuto = trigger4(8)+400;
-%Delta concentration for autonomous driving
-dc_auto = dc(trigger4(1):endOfAuto, :,:);
-s_auto = s(trigger4(1):endOfAuto, :);
-
-%dc_auto = dc(trigger4(1)-200:endOfAuto, :,:);
-%s_auto = s(trigger4(1)-200:endOfAuto, :);
-
-hbo=squeeze(dc_auto(:,1,:));
-hbr=squeeze(dc_auto(:,2,:));
-hbt=squeeze(dc_auto(:,3,:));
-
-%%
-%1:LOOKLEFT, 2:LOOKRIGHT, 3:LOOKDOWN, 4:LOOKUP, 5:YAWN
-hold on
-for i=1:size(motions,1)
-    if (motions(i,3) == 1)
-        area([motions(i,1) motions(i,2)], [0.00003, 0.00003], 'FaceColor', 'y', 'LineStyle', 'none');
-        area([motions(i,1) motions(i,2)], [-0.00003, -0.00003], 'FaceColor', 'y', 'LineStyle', 'none');
-    elseif (motions(i,3) == 2)
-        area([motions(i,1) motions(i,2)], [0.00003, 0.00003], 'FaceColor', 'r', 'LineStyle', 'none');
-        area([motions(i,1) motions(i,2)], [-0.00003, -0.00003], 'FaceColor', 'r', 'LineStyle', 'none');
-    elseif (motions(i,3) == 3)
-        area([motions(i,1) motions(i,2)], [0.00003, 0.00003], 'FaceColor', 'c', 'LineStyle', 'none');
-        area([motions(i,1) motions(i,2)], [-0.00003, -0.00003], 'FaceColor', 'c', 'LineStyle', 'none');
-    elseif (motions(i,3) == 4)
-        area([motions(i,1) motions(i,2)], [0.00003, 0.00003], 'FaceColor', 'g', 'LineStyle', 'none');
-        area([motions(i,1) motions(i,2)], [-0.00003, -0.00003], 'FaceColor', 'g', 'LineStyle', 'none');
-    elseif (motions(i,3) == 5)
-        area([motions(i,1) motions(i,2)], [0.00003, 0.00003], 'FaceColor', 'm', 'LineStyle', 'none');
-        area([motions(i,1) motions(i,2)], [-0.00003, -0.00003], 'FaceColor', 'm', 'LineStyle', 'none');
-    end
-end
-%%
-displayAll = false;
-s_for_plot = s_auto*0.00003;
-if (displayAll) 
-    for i=1:size(hbo,2)
-        subplot(5,4,i)
-        hold on
-        
-        hboPlot = plot(hbo(:,i));
-        hboPlot.LineWidth = 2;
-        plot(s_for_plot)
-    end
-else
-       % hold on
-        hboPlot = plot(hbo(:,13));
-        hboPlot.LineWidth = 2;
-        %Triggers
-        plot(s_for_plot) 
-end
-
-%%
-[noFrames, noChannels] = size(hbo);
-actionAllFrames = zeros(noFrames, 1);
-noMotions = size(motions,1);
-for i=1:noMotions
-    startFrame = motions(i,1);
-    endFrame = motions(i,2);
-    motion = motions(i,3);
-    actionAllFrames(startFrame:endFrame,1)=motion;
-end
+%*******Plot concentration with bandpass filter*******%
+[hbo_filt, hbr_filt, hbt_filt] = convertToConcentratrions(dod_auto_filt, SD, ppf);
+%[s_auto, hbo_auto_filt] = findAutonomousPart(s,hbo_filt);
+%magnitude = max(max(dod_auto));
+magnitude = 0.00003;
+plotDataWithMotion(hbo_filt, motions, s_auto, magnitude, false, 'Concentration after bandpass filter');
