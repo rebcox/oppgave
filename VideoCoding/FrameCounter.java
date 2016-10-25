@@ -48,9 +48,15 @@ public class FrameCounter extends Application{
    public void start(Stage primaryStage)
    {
       startTimeStamp = new Timestamp(System.currentTimeMillis());
-      media = new Media(new File("/Users/rebeccacox/GitHub/oppgave/VideoCoding/CatWoman.mp4").toURI().toString());
-      //Duration startTime = Duration.minutes(31);
-      startTime = Duration.seconds(1);
+            try{
+         media = new Media(new File("/Users/rebeccacox/GitHub/oppgave/VideoCoding/CatWoman012.mp4").toURI().toString());
+      }
+      catch(MediaException e){
+         System.err.println(e);
+         return;
+      }
+      startTime = Duration.minutes(31);
+      //startTime = Duration.seconds(1);
 
       mediaPlayer = new MediaPlayer(media);
       mediaPlayer.setAutoPlay(true);
@@ -117,6 +123,7 @@ public class FrameCounter extends Application{
    @Override
    public void stop(){
       ActionsForMatlab actionsForMatlab = new ActionsForMatlab(actions, startTimeStamp, frequency, startFrame, pauseList);
+      actionsForMatlab.writeToFile(filenameForMatlab);
    }
 
    private HBox addToolBar() {
