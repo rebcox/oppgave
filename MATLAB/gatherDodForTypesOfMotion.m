@@ -6,11 +6,13 @@ load(nirsFile,'-mat');
 
 dod = hmrIntensity2OD(d);
 ScripttoChangeTimeStamps();
-
+readMotionFile; %this should return motions, not just add it to workspace
 fs = 1/(t(2)-t(1));  % sampling frequency of the data
 
+motionsNoOverlap = removeOverlappingMotions(10,motions,fs);
+
 %1:LOOKLEFT, 2:LOOKRIGHT, 3:LOOKDOWN, 4:LOOKUP, 5:YAWN
-[leftTs, rightTs, downTs, upTs, yawnTs] = sortMotions();
+[leftTs, rightTs, downTs, upTs, yawnTs] = sortMotions(motionsNoOverlap);
 noFrames = floor(10*fs);
 
 channel = 13;

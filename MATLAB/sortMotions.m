@@ -1,7 +1,6 @@
-function [leftTs, rightTs, downTs, upTs, yawnTs] = sortMotions()
+function [leftTs, rightTs, downTs, upTs, yawnTs] = sortMotions(motions)
 % Returns the timestamps of motions sorted by movements
 
-readMotionFile;
 noMotions = size(motions,1);
 
 leftTs = zeros(noMotions, 1);

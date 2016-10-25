@@ -10,8 +10,10 @@ ppf = [6 6]; % partial pathlength factors for each wavelength.
 fs = 1/(t(2)-t(1));  % sampling frequency of the data
 [hbo, hbr, hbt] = convertToConcentratrions(dod, SD, ppf);
 
+motionsNoOverlap = removeOverlappingMotions(10,motions,fs);
+
 %1:LOOKLEFT, 2:LOOKRIGHT, 3:LOOKDOWN, 4:LOOKUP, 5:YAWN
-[leftTs, rightTs, downTs, upTs, yawnTs] = sortMotions();
+[leftTs, rightTs, downTs, upTs, yawnTs] = sortMotions(motionsNoOverlap);
 noFrames = floor(10*fs);
 
 channel = 13;
