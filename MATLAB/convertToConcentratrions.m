@@ -1,7 +1,7 @@
-function [ hbo, hbr, hbt ] = convertToConcentratrions( od, SD, ppf )
-%Convert changes in optical density (od) to changes in concentrations (HbO, HbR, and HbT)
+function [ hbo, hbr, hbt ] = convertToConcentratrions( dod, SD, ppf )
+%Convert changes in optical density (dod) to changes in concentrations (HbO, HbR, and HbT)
 
-dc = hmrOD2Conc( od, SD, ppf );
+dc = hmrOD2Conc( dod, SD, ppf );
 
 hbo=squeeze(dc(:,1,:));
 hbr=squeeze(dc(:,2,:));

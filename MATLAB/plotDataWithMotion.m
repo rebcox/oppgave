@@ -1,6 +1,6 @@
 function plotDataWithMotion( data , motions, s, magnitude, displayAllChannels, titleOfPlot)
-%plotWithMotion Summary of this function goes here
-%   Detailed explanation goes here
+%plotWithMotion plot data with colored areas where there are motions
+
 
 figure('Name', titleOfPlot, 'NumberTitle','off')
 %1:LOOKLEFT, 2:LOOKRIGHT, 3:LOOKDOWN, 4:LOOKUP, 5:YAWN
@@ -53,14 +53,14 @@ if (displayAllChannels)
             hold on
 
             dataPlot = plot(data(:,i));
-            dataPlot.LineWidth = 2;
+           % dataPlot.LineWidth = 2;
             plot(s_for_plot)
         end
     end
 else
        % hold on
         dataPlot = plot(data(:,13));
-        dataPlot.LineWidth = 2;
+        %dataPlot.LineWidth = 1;
         %Triggers
         plot(s_for_plot) 
 end
