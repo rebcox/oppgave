@@ -1,33 +1,76 @@
 \section{Theory}
 
-\subsection{Haemodynamic response} \label{haemodynamic}
-This section...
-\subsubsection{What is}
+\subsection{Haemodynamics} \label{sec:haemodynamics}
+This section will briefly present the main concepts of the psychological biology needed to understand this study.
+
 \subsubsection{Hemoglobin}
+Hemoglobin is a part of the blood which transports oxygen to the tissues in the body. It is an protein which, in general, can either be saturated with oxygen molecules (oxyhemoglobin), or unsaturated (deoxyhemoglobin). Measuring hemoglobin levels is the foundation in near infrared spectroscopy (NIRS) and magnetic resonence imaging (MRI), which are both brain imaging techniques\cite{Carter20101}.
+
+\subsubsection{Haemodynamic response}
+Physical activety triggers hemoglobin to transport oxygen, since oxygen is needed for the brain to function. Over time, you can see how a function of oxyhemoglobin changes, as in figure ... . This is called oxyhemoglobin response. In general, for both oxy- and deoxyhemoglobin, the type of function is called a haemodynamic response function. 
+
+The temporal differences of the haemodynamic response function can give us information of underlying cortical physiology\cite{Haigh2015379}. 
 
 
+\subsection{Optical methods} \label{sec:opticalMethods}
+This section will give an short overview of the technology used in this study and show how to use the Beer-Lambert Law for the purpose of brain imaging.
 
-\subsection{Principles of Diffuse Optical Spectroscopy}
-This section...
+\subsubsection{Near infrared spectroscopy} \label{sec:NIRS}
+Near infrared spectroscopy (NIRS) is an noninvasive method to measure changes of oxyhemoglobin (HbO) and deoxyhemoglobin (HbR) levels in the blood\cite{villringer1993near}. This method has more functionallity than magnetic resonance imaging (fMRI)\cite{HomER}. fMRI can only measure the changes in total hemoglobin, altsaa not differenciate between HbO and HbR (cite?). NIRS is also copes subjects movement better, is portable, has higher temoral resolution, and is lowcost. However, it has much poorer spatial resolution due to scattering of the light in the tissue\cite{zhang2007imaging}.
 
+Brain imaging technologies is often split up in two categories: structural and functional. Structional creates images on the anatomy of the brain, while functional use these images to analyze the psysiological processes that underscore neural activity\cite{Carter20101}. The center of interest of this study is on the functional imaging (fNIRS).
 
+To capture images, a net with optodes is placed on a subjects head. The optodes sends light into the sculp, and detect the intensity of the light as it passes throgh the tissue. This intensity is used to determine the amount of absorbed light, which can be used to calculate the amount of different chromophobes in the tissue.
 
 \subsubsection{Optical Properties of Biological Tissue}
-When light is sent by a source through the sculp, it will be scattered and to some degree absorbed before it reaches an optical detector. (cite: optical methods book) The light in the near-infrared range between roughly 600 and 950 nm is relaticely poorly absorbed by biological tissue. The primary absorbers in this wavelength range are oxyhemoglobin (HbO) and deoxyhemoglobin (HbR) (cite:noninvasive imaging of cerebral activation...). These are both important biological indicators (section \ref{haemodynamic}). The absorption spectra, in the near-infrared window, of HbO and HbR, as well as six other biological components, can be read from figure ... in Appendix ... (Fig. 2.3 i optical methods). 
+When light is sent by a source through the sculp, it will be scattered and to some degree absorbed before it reaches an optical detector\cite{opticalMethods}. The light in the near-infrared range between roughly 600 and 950 nm is relatively poorly absorbed by biological tissue, and even bones. The primary absorbers in this wavelength range are oxyhemoglobin HbO and HbR (cite:noninvasive imaging of cerebral activation...). These are the two biological indicators SOM VI SAA PAA I SECTION \ref{sec:haemodynamics}. The absorption spectra, in the near-infrared window, of HbO and HbR, as well as six other biological components, can be read from figure ... in Appendix ... (Fig. 2.3 i optical methods). 
 
 \subsubsection{Beer-Lambert Law}
+Optical density is given as
+\begin{equation}
+\text{OD}=-log(\frac{I}{I_0}) = \epsilon \cdot [X] \cdot L,
+\end{equation}
+
+with log base, where $I_0$ and $I$ is respectively the initial and measured light intensity. $\epsilon$ is molar extinction coefficient for the compound, [X] is the concentration of the solution and L is the length of the solution the the light passes through. Optical density is also known as absorbance. The Beet-Lambert law is the linear relationship between absorbance and concentration of a solution.However, this law has a number of limitation, which makes the linearity in the formula not true for some conditions (cite). The most important limitation for NIRS is the nonlinearity the scattering of the light due to particulates in the sample.
+
 
 \subsubsection{The Modified Beer-Lambert Law}
+The moditied Beer-Lambert Law (MBLL) is given by the expression
+\begin{equation}
+\text{OD}=\mu_A \cdot L \cdot \text{DPF} + G
+\end{equation}
+
+where L is the distance between the source and detector, DPF is the differential path-length factor, which corrects the linear distance L. G is the geometric factor, which corrects for the scattered light that escapes the boundaries of the detectors. This absolute absorbtion is hard to measure due to the uncertainty of both G and DPF, as well as the existance of other chromophores in the tissue.
+
+In this study, only the changes in optical density is really needed. The change in other chromophores than HbO and HbR can be said to be static. G is also constant, so 
+
+\begin{equation} \label{sec:deltaODgeneral}
+\Delta\text{OD}=\displaystyle\sum_{i} \epsilon_i \cdot \Delta [C]_i \cdot L \cdot \text{DPF}
+\end{equation}
+
+where G and static contributors are subtracted. $\Delta C_i$ is the change of contributing chromophobe, i. In brain imaging studies, HbO and HbR are the contributors of most interest, so equation \ref{deltaODgeneral} for a particulat wavelength $\lambda$ is
+
+\begin{equation}
+\Delta\text{OD}^{\lambda}= (\epsilon_{HbO}^{\lambda} \cdot \Delta [HbO] + \epsilon_{HbR}^{\lambda} \cdot \Delta [HbR]) \cdot L \cdot \text{DPF}^{\lambda}
+\end{equation}
+
+Two wavelengths are needed to solve for $\Delta [HbO]$ and $\Delta [HbR]$.
+
+\begin{equation}
+function for \Delta HbO og \Delta HbR if necessary
+\end{equation}
 
 
-\subsection{Optical methods}
-This section...
-\subsubsection{NIRS}
-The amount of light absorbed is used to measure hemoglobin levels in the blood. 
-\subsubsection{In this experiment}
 
 
-\subsection{Motion artifact}
-This section...
+
+\subsection{Motion artifacts} \label{sec:motionArtifact}
 \subsubsection{Why is it a problem}
 \subsubsection{Motion correction methods}
+
+
+
+
+
+
+
