@@ -1,4 +1,5 @@
 import java.io.File;
+import java.lang.Math;
 import java.lang.String;
 import java.sql.Timestamp;
 import java.util.ArrayList;
@@ -33,7 +34,8 @@ public class FrameCounter extends Application{
    private List<Pause> pauseList;
    private String filenameForMatlab = "motionData.txt"; 
    private double frequency = 7.8125;
-   private long startFrame = 0;
+   private int startSecond = 1914;
+   private long startFrame = 15223;
 
    @Override
    public void init()
@@ -55,8 +57,8 @@ public class FrameCounter extends Application{
          System.err.println(e);
          return;
       }
-      startTime = Duration.minutes(31);
-      //startTime = Duration.seconds(1);
+      //startTime = Duration.minutes(31);
+      startTime = Duration.seconds(startSecond);
 
       mediaPlayer = new MediaPlayer(media);
       mediaPlayer.setAutoPlay(true);
