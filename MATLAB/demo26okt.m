@@ -12,8 +12,10 @@ x=0:step:(seconds-step);
 
 figure('Name', 'Error plot: Change in OD, looking left', 'NumberTitle','off')
 shadedErrorBar(x,mean(dodLeft,1),std(dodLeft),'g');
+noLeft = size(dodLeft,1)
 figure('Name', 'Error plot: Change in OD, looking right', 'NumberTitle','off')
 shadedErrorBar(x,mean(dodRight,1),std(dodRight),'b');
+noRight = size(dodRight,1)
 
 %%
 gatherHboForTypesOfMotion;

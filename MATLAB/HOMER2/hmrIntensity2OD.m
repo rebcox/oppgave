@@ -14,9 +14,10 @@
 function dod = hmrIntensity2OD( d )
 
 % convert to dod
-dm = mean(abs(d),1); % mean of columns
+dm = mean(abs(d),1); % mean of the whole experiment, on each channel
 nTpts = size(d,1); % #rows
-dod = -log(abs(d)./(ones(nTpts,1)*dm)); %(Beer-Lambert law, with mean as Io)
+%I_init (the denominator) is the mean of the whole experiment 
+dod = -log(abs(d)./(ones(nTpts,1)*dm));
 
 if ~isempty(find(d(:)<=0))
     warning( 'WARNING: Some data points in d are zero or negative.' );

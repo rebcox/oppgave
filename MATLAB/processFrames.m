@@ -1,5 +1,6 @@
 function processFrames(frames)
-%Process and plot delta OD for all optodes/channels for frames
+%Process and plot delta OD for all optodes/channels for
+% frames ( [startFrame endFrame] )
 
 startFrame = frames(1);
 endFrame = frames(2);

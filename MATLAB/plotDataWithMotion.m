@@ -40,7 +40,6 @@ if (displayAllChannels)
         hold on
         
         dataPlot = plot(data(:,i));
-        dataPlot.LineWidth = 2;
         plot(s_for_plot)
     end
     if noFigures == 2

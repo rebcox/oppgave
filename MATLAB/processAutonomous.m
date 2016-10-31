@@ -12,7 +12,9 @@ ppf = [6 6]; % partial pathlength factors for each wavelength.
 dod = hmrIntensity2OD(d);
 ScripttoChangeTimeStamps();
 readMotionFile;
-[s_auto, dod_auto] = findAutonomousPart(s,dod);
+%[s_auto, dod_auto] = findAutonomousPart(s,dod);
+s_auto = s;
+dod_auto = dod;
 %% Plot delta optical density without bandpass filter
 %magnitude = max(max(dod_auto));
 magnitude = 0.15;

@@ -13,8 +13,8 @@ noMotions = sizeOfFirstCell(1);
 %motions is a 2D array: [frame, movementCode]
 motions = zeros(noMotions,3);
 for i=1:noMotions
-    motions(i,1) = str2num(motionsRaw{1}{i});
-    motions(i,2) = str2num(motionsRaw{2}{i});
+    motions(i,1) = str2num(motionsRaw{1}{i}); %startFrame
+    motions(i,2) = str2num(motionsRaw{2}{i}); %endFrame
     if (strcmp(motionsRaw{3}{i}, 'LOOKLEFT'))
         motions(i,3) = 1;
     elseif (strcmp(motionsRaw{3}{i}, 'LOOKRIGHT'))
