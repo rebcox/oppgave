@@ -7,7 +7,7 @@ This section will briefly present the main concepts of the psychological biology
 Hemoglobin is a part of the blood which transports oxygen to the tissues in the body. It is an protein which, in general, can either be saturated with oxygen molecules (oxyhemoglobin), or unsaturated (deoxyhemoglobin). Measuring hemoglobin levels is the foundation in near infrared spectroscopy (NIRS) and magnetic resonence imaging (MRI), which are both brain imaging techniques\cite{Carter20101}.
 
 \subsubsection{Haemodynamic response}
-Physical activety triggers hemoglobin to transport oxygen, since oxygen is needed for the brain to function. Over time, you can see how a function of oxyhemoglobin changes, as in figure ... . This is called oxyhemoglobin response. In general, for both oxy- and deoxyhemoglobin, the type of function is called a haemodynamic response function. 
+Physical activety triggers hemoglobin to transport oxygen, since oxygen is needed for the brain to function. Over time, you can see how a function of oxyhemoglobin changes, as in \todo{Figure ...} . This is called oxyhemoglobin response. In general, for both oxy- and deoxyhemoglobin, the type of function is called a haemodynamic response function (HRF). 
 
 The temporal differences of the haemodynamic response function can give us information of underlying cortical physiology\cite{Haigh2015379}. 
 
@@ -16,14 +16,14 @@ The temporal differences of the haemodynamic response function can give us infor
 This section will give an short overview of the technology used in this study and show how to use the Beer-Lambert Law for the purpose of brain imaging.
 
 \subsubsection{Near infrared spectroscopy} \label{sec:NIRS}
-Near infrared spectroscopy (NIRS) is an noninvasive method to measure changes of oxyhemoglobin (HbO) and deoxyhemoglobin (HbR) levels in the blood\cite{villringer1993near}. This method has more functionallity than magnetic resonance imaging (fMRI)\cite{HomER}. fMRI can only measure the changes in total hemoglobin, altsaa not differenciate between HbO and HbR (cite?). NIRS is also copes subjects movement better, is portable, has higher temoral resolution, and is lowcost. However, it has much poorer spatial resolution due to scattering of the light in the tissue\cite{zhang2007imaging}.
+Near infrared spectroscopy (NIRS) is an noninvasive method infere cerebral activity. More specifically, NIRS measure changes of oxyhemoglobin (HbO) and deoxyhemoglobin (HbR) levels in the blood\cite{villringer1993near}. This method has more functionallity than magnetic resonance imaging (fMRI)\cite{HomER}. fMRI can only measure the changes in total hemoglobin, altsaa not differenciate between HbO and HbR (\todo{cite?}). NIRS is also copes subjects movement better, is portable, has higher temoral resolution, and is lowcost. However, it has much poorer spatial resolution due to scattering of the light in the tissue\cite{zhang2007imaging}.
 
 Brain imaging technologies is often split up in two categories: structural and functional. Structional creates images on the anatomy of the brain, while functional use these images to analyze the psysiological processes that underscore neural activity\cite{Carter20101}. The center of interest of this study is on the functional imaging (fNIRS).
 
 To capture images, a net with optodes is placed on a subjects head. The optodes sends light into the sculp, and detect the intensity of the light as it passes throgh the tissue. This intensity is used to determine the amount of absorbed light, which can be used to calculate the amount of different chromophobes in the tissue.
 
 \subsubsection{Optical Properties of Biological Tissue}
-When light is sent by a source through the sculp, it will be scattered and to some degree absorbed before it reaches an optical detector\cite{opticalMethods}. The light in the near-infrared range between roughly 600 and 950 nm is relatively poorly absorbed by biological tissue, and even bones. The primary absorbers in this wavelength range are oxyhemoglobin HbO and HbR (cite:noninvasive imaging of cerebral activation...). These are the two biological indicators SOM VI SAA PAA I SECTION \ref{sec:haemodynamics}. The absorption spectra, in the near-infrared window, of HbO and HbR, as well as six other biological components, can be read from figure ... in Appendix ... (Fig. 2.3 i optical methods). 
+When light is sent by a source through the sculp, it will be scattered and to some degree absorbed before it reaches an optical detector\cite{opticalMethods}. The light in the near-infrared range between roughly 600 and 950 nm is relatively poorly absorbed by biological tissue, and even bones. The primary absorbers in this wavelength range are oxyhemoglobin HbO and HbR \cite{nonInvasiveImaging}. These are the two biological indicators SOM VI SAA PAA I SECTION \ref{sec:haemodynamics}. The absorption spectra, in the near-infrared window, of HbO and HbR, as well as six other biological components, can be read from \todo{Figure ... in Appendix ... (Fig. 2.3 i optical methods)}. 
 
 \subsubsection{Beer-Lambert Law}
 Optical density is given as
@@ -31,7 +31,7 @@ Optical density is given as
 \text{OD}=-log(\frac{I}{I_0}) = \epsilon \cdot [X] \cdot L,
 \end{equation}
 
-with log base, where $I_0$ and $I$ is respectively the initial and measured light intensity. $\epsilon$ is molar extinction coefficient for the compound, [X] is the concentration of the solution and L is the length of the solution the the light passes through. Optical density is also known as absorbance. The Beet-Lambert law is the linear relationship between absorbance and concentration of a solution.However, this law has a number of limitation, which makes the linearity in the formula not true for some conditions (cite). The most important limitation for NIRS is the nonlinearity the scattering of the light due to particulates in the sample.
+with log base, where $I_0$ and $I$ is respectively the initial and measured light intensity. $\epsilon$ is molar extinction coefficient for the compound, [X] is the concentration of the solution and L is the length of the solution the the light passes through. Optical density is also known as absorbance. The Beet-Lambert law is the linear relationship between absorbance and concentration of a solution.However, this law has a number of limitation, which makes the linearity in the formula not true for some conditions (\todo{cite}). The most important limitation for NIRS is the nonlinearity the scattering of the light due to particulates in the sample.
 
 
 \subsubsection{The Modified Beer-Lambert Law}
@@ -65,9 +65,21 @@ function for \Delta HbO og \Delta HbR if necessary
 
 
 \subsection{Motion artifacts} \label{sec:motionArtifact}
-\subsubsection{Why is it a problem}
+
+\subsubsection{Hva er}
+The fNIRS technology has improved a lot in recent years, but there are still some problems. When a participants moves, the optodes will slightly decouple from the sculp, creating a spike in the hemodynamic response. This is called motion artifact, and can be a significant component of the measured fNIRS signals (\todo{cite: motion artifacts a comparison brigadoi}). Motion artifacts should be detected and removed.
+
+The simplest way to avoid the issue is to reject all trails containing motion artifacts. Rejectiong can, however, be problemetic if there are a lot of motion artifacts and the number of trails is low. This is often the case in fNIRS, and the result of rejecting would be a very noisy hemodynamic response.
+
+Removal of motion articats is the major topic of this study.
+
 \subsubsection{Motion correction methods}
 
+Principal component analysis (PCA) cite: zang et al 2005
+Kalman filtering cite: Izzetoglu et al. 2010
+Correlation-based signal improvement (CBSI) cite: Cui et al. 2010
+Wavelet filtering cite: Molavi and Dumont 2012
+Spline interpolation cite: scholkmann et al. 2010
 
 
 

@@ -1,5 +1,4 @@
 \section{Method}
-yoyoyoyoy
 %\codeStart{concomp}{Connected components}
 %1: I = im2double(imread('img19.jpg'));
 %2: bw = im2bw(I,0.52);
@@ -20,3 +19,36 @@ yoyoyoyoy
 %\imageJPGWide{sift}{1}{SIFT comparion of two images}
 
 
+This study will contribute to the research by ..., "Assessing Driver Cognitive Activity under Varying Levels of Automation with Functional Near Infrared Spectroscopy". The reasearchers measured NIRS data of participants driving autonomous, partially autonomous and manual cars in a simulator. The participants where also filmed from two angles, and these films where syncronized with the simulator visualization and a NIRSLAB (ref) window (Figure \ref{video4windows}.
+
+\begin{figure}
+\includegraphics[width=0.6\textwidth,keepaspectratio]{figures/video4windows}
+\label{video4windows}
+\end{figure}
+
+There are tools for removing motion artifacts, but these may also remove some of the hemodynamic response. 
+
+
+\subsection{Tools}
+Huppert et al. (\todo{kan man si det?}) has developed a tool called HomER (\todo{staar for??}), which is a set of MATLAB scripts used for analyzing fNIRS data. MATLAB is, as its abbreviation Matrix Laboratory states, a tool specialized for working with matrices. \todo{Nirs data er matriser blabla.} It was therefore also chosen to write more scripts in MATLAB, in addition to usen the premade tool HomER.
+
+A program for marking motion artifacts in the video is made. This program is written in Java (nevne javaFX?). Java was chosen because of its ease of use within graphical user interface (GUI) programming. 
+
+\subsection{Finding motion artifacts}
+
+\subsection{Analyzing}
+
+
+
+%chooseFramesToDisplay.m         plotDataWithMotion.m
+%convertToConcentratrions.m      plotOneMotion.m
+%CreateNirsFileForHomer.m        plotRandomIntervals.m
+%demo26okt.m                     processAutonomous.m
+%findAutonomousPart.m            processFrames.m
+%findDataForMotion.m             readMotionFile.m
+%frameIsSecondsFromStimLine.m    removeOverlappingMotions.m
+%gatherDodForTypesOfMotion.m     saveAllActions.m
+%gatherHboForTypesOfMotion.m     ScripttoChangeTimeStamps.m
+%getInput.m                      shadedErrorBar.m
+%NIRSprocessing.m                sortMotions.m
+%plotAllChannelsOnRightMotion.m  waveToConc.m
