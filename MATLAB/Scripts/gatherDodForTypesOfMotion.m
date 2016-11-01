@@ -1,4 +1,5 @@
-%This script makes five lists; hboRight, hboLeft, hboDown, hboUp, hboYawn.
+
+%This script makes five lists; dodRight, dodLeft, dodDown, dodUp, dodYawn.
 %These lists will consist of 20s hbo-data for channel 13 for the timestamps
 %in leftTs, rightTs, downTs, upTs, yawnTs from sortMotions()
 nirsFile =  'cw012.nirs';
@@ -12,7 +13,7 @@ fs = 1/(t(2)-t(1));  % sampling frequency of the data
 motionsNoOverlap = removeOverlappingMotions(10,motions,fs);
 
 %1:LOOKLEFT, 2:LOOKRIGHT, 3:LOOKDOWN, 4:LOOKUP, 5:YAWN
-[leftTs, rightTs, downTs, upTs, yawnTs] = sortMotions(motionsNoOverlap);
+[leftTs, rightTs, downTs, upTs, yawnTs] = sortMotionTimestamps(motionsNoOverlap);
 noFrames = floor(10*fs);
 
 channel = 13;

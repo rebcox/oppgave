@@ -7,12 +7,12 @@ ppf = [6 6]; % partial pathlength factors for each wavelength.
 fs = 1/(t(2)-t(1));  % sampling frequency of the data
 [hbo, hbr, hbt] = convertToConcentratrions(dod, SD, ppf);
 
-randNumbers = round((18859-79)*rand(9,1));
+noNumbers = 9;
+randNumbers = round((18859-79)*rand(noNumbers,1));
 noFrames = floor(10*fs);
-hboRandom = zeros(9,78);
+hboRandom = zeros(noNumbers,78);
 
-for i=1:9
-    interval = b(i,:);
+for i=1:noNumbers
     startFrame = randNumbers(i);
     endFrame = startFrame + noFrames - 1;
     hboRandom(i,:) =  hbo(startFrame:endFrame, 13);

@@ -1,4 +1,4 @@
-function [leftTs, rightTs, downTs, upTs, yawnTs] = sortMotions(motions)
+function [leftTs, rightTs, downTs, upTs, yawnTs] = sortMotionTimestamps(motions)
 % Returns the timestamps of motions sorted by movements
 
 noMotions = size(motions,1);

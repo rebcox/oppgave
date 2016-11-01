@@ -5,7 +5,7 @@ function plotAllChannelsOnRightMotion( hbo , motions, noFrames, fs, s)
 noChannels = size(hbo,2);
 noMotions = size(rightTs,1);
 hboRightAllChannels = zeros(noMotions,noFrames,noChannels);
-
+%rightTs=leftTs;
 counter = 1;
 for i=1:noMotions
     startFrame = rightTs(i);
