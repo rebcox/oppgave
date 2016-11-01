@@ -1,9 +1,9 @@
 
-hboRightAroundZero = hboRight;
-for i=1:size(hboRight,1)
-    meanOfLine = mean(hboRight(i,:));
-    hboRightAroundZero(i,:) = hboRight(i,:)-meanOfLine;
-end
+% hboRightAroundZero = hboRight;
+% for i=1:size(hboRight,1)
+%     meanOfLine = mean(hboRight(i,:));
+%     hboRightAroundZero(i,:) = hboRight(i,:)-meanOfLine;
+% end
 % 
 % hold on
 % for i=1:size(hboRight,1)

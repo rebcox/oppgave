@@ -1,4 +1,4 @@
-function [ hbo, hbr, hbt ] = convertToConcentratrions( dod, SD, ppf )
+function [ hbo, hbr, hbt ] = convertToConcentrations( dod, SD, ppf )
 %Convert changes in optical density (dod) to changes in concentrations (HbO, HbR, and HbT)
 
 dc = hmrOD2Conc( dod, SD, ppf );

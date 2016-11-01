@@ -1,9 +1,8 @@
-%% DEMO 26.10.16
+%% Plot shaded error bar for Dod and Hbo for channel 13
 clear
 clc
 
-%% 
-gatherDodForTypesOfMotion;
+loadWorkspaceForOneChannel;
 
 %% Plot change in optical density for different movements
 step = 1/fs;
@@ -16,9 +15,6 @@ noLeft = size(dodLeft,1)
 figure('Name', 'Error plot: Change in OD, looking right', 'NumberTitle','off')
 shadedErrorBar(x,mean(dodRight,1),std(dodRight),'b');
 noRight = size(dodRight,1)
-
-%%
-gatherHboForTypesOfMotion;
 
 %% Plot change in HbO density for different movements
 

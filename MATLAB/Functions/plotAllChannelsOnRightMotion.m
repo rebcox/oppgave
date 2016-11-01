@@ -1,7 +1,7 @@
 function plotAllChannelsOnRightMotion( hbo , motions, noFrames, fs, s)
 %Make subplots of all channels for every right motion
 
-[leftTs, rightTs, ~ , ~, ~] = sortMotions(motions);
+[leftTs, rightTs, ~ , ~, ~] = sortMotionTimestamps(motions);
 noChannels = size(hbo,2);
 noMotions = size(rightTs,1);
 hboRightAllChannels = zeros(noMotions,noFrames,noChannels);

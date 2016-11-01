@@ -1,5 +1,7 @@
-function plotDataWithMotion( data , motions, s, magnitude, displayAllChannels, titleOfPlot)
+function plotDataWithMotion( data , channel, motions, s, magnitude, displayAllChannels, titleOfPlot)
 %plotWithMotion plot data with colored areas where there are motions
+%if displayAllChannels is true, channel can be a random number
+% magnitude for dod: ~0.15. magnitude for hbo: ~0.00003
 
 
 figure('Name', titleOfPlot, 'NumberTitle','off')
@@ -58,7 +60,7 @@ if (displayAllChannels)
     end
 else
        % hold on
-        dataPlot = plot(data(:,13));
+        dataPlot = plot(data(:,channel));
         %dataPlot.LineWidth = 1;
         %Triggers
         plot(s_for_plot) 

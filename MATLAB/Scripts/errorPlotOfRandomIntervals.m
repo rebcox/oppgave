@@ -5,7 +5,7 @@ dod = hmrIntensity2OD(d);
 ScripttoChangeTimeStamps();
 ppf = [6 6]; % partial pathlength factors for each wavelength.
 fs = 1/(t(2)-t(1));  % sampling frequency of the data
-[hbo, hbr, hbt] = convertToConcentratrions(dod, SD, ppf);
+[hbo, hbr, hbt] = convertToConcentrations(dod, SD, ppf);
 
 noNumbers = 9;
 randNumbers = round((18859-79)*rand(noNumbers,1));
