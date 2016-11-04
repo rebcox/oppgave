@@ -8,24 +8,24 @@ figure('Name', titleOfPlot, 'NumberTitle','off')
 %1:LOOKLEFT, 2:LOOKRIGHT, 3:LOOKDOWN, 4:LOOKUP, 5:YAWN
 hold on
 
-for i=1:size(motions,1)
-    if (motions(i,3) == 1)
-        area([motions(i,1) motions(i,2)], [magnitude, magnitude], 'FaceColor', 'y', 'LineStyle', 'none');
-        area([motions(i,1) motions(i,2)], [-magnitude, -magnitude], 'FaceColor', 'y', 'LineStyle', 'none');
-    elseif (motions(i,3) == 2)
-        area([motions(i,1) motions(i,2)], [magnitude, magnitude], 'FaceColor', 'r', 'LineStyle', 'none');
-        area([motions(i,1) motions(i,2)], [-magnitude, -magnitude], 'FaceColor', 'r', 'LineStyle', 'none');
-    elseif (motions(i,3) == 3)
-        area([motions(i,1) motions(i,2)], [magnitude, magnitude], 'FaceColor', 'c', 'LineStyle', 'none');
-        area([motions(i,1) motions(i,2)], [-magnitude, -magnitude], 'FaceColor', 'c', 'LineStyle', 'none');
-    elseif (motions(i,3) == 4)
-        area([motions(i,1) motions(i,2)], [magnitude, magnitude], 'FaceColor', 'g', 'LineStyle', 'none');
-        area([motions(i,1) motions(i,2)], [-magnitude, -magnitude], 'FaceColor', 'g', 'LineStyle', 'none');
-    elseif (motions(i,3) == 5)
-        area([motions(i,1) motions(i,2)], [magnitude, magnitude], 'FaceColor', 'm', 'LineStyle', 'none');
-        area([motions(i,1) motions(i,2)], [-magnitude, -magnitude], 'FaceColor', 'm', 'LineStyle', 'none');
-    end
-end
+% for i=1:size(motions,1)
+%     if (motions(i,3) == 1)
+%         area([motions(i,1) motions(i,2)], [magnitude, magnitude], 'FaceColor', 'y', 'LineStyle', 'none');
+%         area([motions(i,1) motions(i,2)], [-magnitude, -magnitude], 'FaceColor', 'y', 'LineStyle', 'none');
+%     elseif (motions(i,3) == 2)
+%         area([motions(i,1) motions(i,2)], [magnitude, magnitude], 'FaceColor', 'r', 'LineStyle', 'none');
+%         area([motions(i,1) motions(i,2)], [-magnitude, -magnitude], 'FaceColor', 'r', 'LineStyle', 'none');
+%     elseif (motions(i,3) == 3)
+%         area([motions(i,1) motions(i,2)], [magnitude, magnitude], 'FaceColor', 'c', 'LineStyle', 'none');
+%         area([motions(i,1) motions(i,2)], [-magnitude, -magnitude], 'FaceColor', 'c', 'LineStyle', 'none');
+%     elseif (motions(i,3) == 4)
+%         area([motions(i,1) motions(i,2)], [magnitude, magnitude], 'FaceColor', 'g', 'LineStyle', 'none');
+%         area([motions(i,1) motions(i,2)], [-magnitude, -magnitude], 'FaceColor', 'g', 'LineStyle', 'none');
+%     elseif (motions(i,3) == 5)
+%         area([motions(i,1) motions(i,2)], [magnitude, magnitude], 'FaceColor', 'm', 'LineStyle', 'none');
+%         area([motions(i,1) motions(i,2)], [-magnitude, -magnitude], 'FaceColor', 'm', 'LineStyle', 'none');
+%     end
+% end
 
 %make this general
 noSubPlots = size(data,2);
