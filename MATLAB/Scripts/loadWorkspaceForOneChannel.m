@@ -2,9 +2,9 @@
 % - dodRight, dodLeft, dodDown, dodUp, dodYawn
 % - hboRight, hboLeft, hboDown, hboUp, hboYawn
 
-channel = 13;
+channel = 1;
 
-nirsFile =  'cw012.nirs';
+nirsFile =  'cw025.nirs';
 load(nirsFile,'-mat');
 ppf = [6 6]; % partial pathlength factors for each wavelength.
 fs = 1/(t(2)-t(1));  % sampling frequency of the data

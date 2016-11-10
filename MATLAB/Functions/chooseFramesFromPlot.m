@@ -4,11 +4,12 @@ plotDataWithMotion(dataToPlot, channel, motions, s, magnitude, false, 'Choose fr
 
 % Create push button
 btn = uicontrol('Style', 'pushbutton', 'String', 'Choose frames',...
-    'UserData', [0 0], 'Position', [20 20 100 20], 'Callback', @getInput);
+    'UserData', [0 0 0 0], 'Position', [20 20 100 20], 'Callback', @getInput);
 
 waitfor(btn, 'UserData');
 if (ishandle(1)) %if figure is open
-    framesToDisplay = btn.UserData;
+    points = btn.UserData;
+    framesToDisplay = [points(1) points(3)]; 
     close(gcf);
 end
 

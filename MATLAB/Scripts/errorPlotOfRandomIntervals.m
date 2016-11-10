@@ -22,5 +22,5 @@ step = 1/fs;
 seconds = 10;
 x=0:step:(seconds-step);
 
-figure('Name', 'Error plot: Change in OD, random interval', 'NumberTitle','off')
+figure('Name', 'Error plot: HbO, random interval', 'NumberTitle','off')
 shadedErrorBar(x,mean(hboRandom,1),std(hboRandom),'g');
