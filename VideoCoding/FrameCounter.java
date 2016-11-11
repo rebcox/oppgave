@@ -22,6 +22,12 @@ import javafx.util.Duration;
 
 public class FrameCounter extends Application{
   
+   private String filenameForMatlab = "motionData.txt"; 
+   private String filenameVideo = "/Users/rebeccacox/Desktop/Catwoman/CatWoman025.mp4.m4v";
+   private double frequency = 7.8125;
+   private int startSecond = 1483;
+   private long startFrame = 10596;
+
    private List<Action> actions;
    private List<Action> tempActions;
    private Scene scene;
@@ -32,10 +38,7 @@ public class FrameCounter extends Application{
    private MediaView mediaView;
    static Timestamp pauseStart;
    private List<Pause> pauseList;
-   private String filenameForMatlab = "motionData.txt"; 
-   private double frequency = 7.8125;
-   private int startSecond = 1914;
-   private long startFrame = 15223;
+
 
    @Override
    public void init()
@@ -51,7 +54,7 @@ public class FrameCounter extends Application{
    {
       startTimeStamp = new Timestamp(System.currentTimeMillis());
             try{
-         media = new Media(new File("/Users/rebeccacox/GitHub/oppgave/VideoCoding/CatWoman012.mp4").toURI().toString());
+         media = new Media(new File(filenameVideo).toURI().toString());
       }
       catch(MediaException e){
          System.err.println(e);
@@ -95,8 +98,12 @@ public class FrameCounter extends Application{
                      System.out.println("Key right pressed"); 
                      break;
                   case SPACE:
-                     action = new Action(new Timestamp(System.currentTimeMillis()), Movement.YAWN);
+                     action = new Action(new Timestamp(System.currentTimeMillis()), Movement.SMALL);
                      System.out.println("Space pressed"); 
+                     break;
+                  case F:
+                     action = new Action(new Timestamp(System.currentTimeMillis()), Movement.FACE);
+                     System.out.println("f pressed"); 
                      break;
                 }
                tempActions.add(action);
@@ -106,7 +113,7 @@ public class FrameCounter extends Application{
          @Override
          public void handle(KeyEvent event) {
             switch(event.getCode()){
-               case UP: case DOWN: case LEFT: case RIGHT: case SPACE:
+               case UP: case DOWN: case LEFT: case RIGHT: case SPACE: case F:
                   Timestamp startTime = tempActions.get(0).getTimestamp();
                   Duration duration = new Duration(System.currentTimeMillis()-startTime.getTime());
                   actions.add(new Action(startTime, tempActions.get(0).getMovement(), duration));
