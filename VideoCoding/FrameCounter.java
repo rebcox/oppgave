@@ -22,11 +22,11 @@ import javafx.util.Duration;
 
 public class FrameCounter extends Application{
   
-   private String filenameForMatlab = "motionData.txt"; 
-   private String filenameVideo = "/Users/rebeccacox/Desktop/Catwoman/CatWoman025.mp4.m4v";
+   private String filenameVideo = "/home/rebecca/Desktop/FindingMotions/CatWoman009.mp4";
+   private String filenameForMatlab = "/home/rebecca/Desktop/FindingMotions/motionDataPart9.txt"; 
    private double frequency = 7.8125;
-   private int startSecond = 1483;
-   private long startFrame = 10596;
+   private int startSecond = 1300;
+   private long startFrame = 10401;
 
    private List<Action> actions;
    private List<Action> tempActions;
@@ -53,20 +53,20 @@ public class FrameCounter extends Application{
    public void start(Stage primaryStage)
    {
       startTimeStamp = new Timestamp(System.currentTimeMillis());
-            try{
+      try{
          media = new Media(new File(filenameVideo).toURI().toString());
+         mediaPlayer = new MediaPlayer(media);
+         startTime = Duration.seconds(startSecond);
+         mediaPlayer.setStartTime(startTime);
+         mediaView = new MediaView(mediaPlayer);
       }
       catch(MediaException e){
          System.err.println(e);
          return;
       }
-      //startTime = Duration.minutes(31);
-      startTime = Duration.seconds(startSecond);
 
-      mediaPlayer = new MediaPlayer(media);
-      mediaPlayer.setAutoPlay(true);
-      mediaPlayer.setStartTime(startTime);
-      mediaView = new MediaView(mediaPlayer);
+      //mediaPlayer.setAutoPlay(true);
+
       //DoubleProperty fitHeightProperty = mediaView.fitHeightProperty();
       mediaView.setFitHeight(550);
       BorderPane borderPane = new BorderPane();
