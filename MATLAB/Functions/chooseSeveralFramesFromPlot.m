@@ -9,6 +9,7 @@ plot(s_for_plot, 'm')
 plot(-s_for_plot, 'm') 
 
 autoStimStart = find(s(:,4));
+manualStimStart = find(s(:,3));
 axis([autoStimStart(1)-100 autoStimStart(8)+400 -0.2 0.2]);
         
 %plotDataWithMotion(dataToPlot, channel, motions, s, magnitude, false, 'Choose frames');

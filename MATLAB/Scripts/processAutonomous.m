@@ -1,7 +1,7 @@
 clear;
 clc;
 channel = 13;
-nirsFile =  'cw012.nirs';
+nirsFile =  'cw025.nirs';
 load(nirsFile,'-mat');
 %Variables
 fs = 1/(t(2)-t(1));  % sampling frequency of the data

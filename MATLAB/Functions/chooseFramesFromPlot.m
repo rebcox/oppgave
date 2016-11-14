@@ -1,4 +1,5 @@
 function framesToDisplay = chooseFramesFromPlot(dataToPlot, channel, magnitude, motions, s)
+framesToDisplay =  [];
 
 plotDataWithMotion(dataToPlot, channel, motions, s, magnitude, false, 'Choose frames');
 

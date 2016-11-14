@@ -41,12 +41,15 @@ dod_corr=dod;
 % amp_thresh, then a segment of data around that time point is marked as a
 % motion artifact.
 fs = 1/(t(2)-t(1));  % sampling frequency of the data
-tMotion = 0.5;
+tMotion = 1; %0.5;
 tMask = 1;
+tMask = 0.5;
 stdevThreshold = 20;
+stdevThreshold =5;
 ampThreshold = 0.3;
-
-%tIncAuto = hmrMotionArtifact(dod_corr, fs, SD, tIncMan, tMotion, tMask, stdevThreshold, ampThreshold);
+ampThreshold = 0.2;
+SD.MeasListAct = ones(size(d,2),1);
+tIncAuto = hmrMotionArtifact(dod, fs, SD, tIncMan, tMotion, tMask, stdevThreshold, ampThreshold);
 
 %%
 %Once the Motion Artifacts are identified, we eliminate them using

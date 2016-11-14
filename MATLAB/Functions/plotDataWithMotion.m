@@ -8,7 +8,7 @@ figure('Name', titleOfPlot, 'NumberTitle','off')
 %1:LOOKLEFT, 2:LOOKRIGHT, 3:LOOKDOWN, 4:LOOKUP, 5:YAWN
 hold on
 
-% for i=1:size(motions,1)
+for i=1:size(motions,1)
 %     if (motions(i,3) == 1)
 %         area([motions(i,1) motions(i,2)], [magnitude, magnitude], 'FaceColor', 'y', 'LineStyle', 'none');
 %         area([motions(i,1) motions(i,2)], [-magnitude, -magnitude], 'FaceColor', 'y', 'LineStyle', 'none');
@@ -24,8 +24,15 @@ hold on
 %     elseif (motions(i,3) == 5)
 %         area([motions(i,1) motions(i,2)], [magnitude, magnitude], 'FaceColor', 'm', 'LineStyle', 'none');
 %         area([motions(i,1) motions(i,2)], [-magnitude, -magnitude], 'FaceColor', 'm', 'LineStyle', 'none');
-%     end
-% end
+
+    if (motions(i,3) == 6)
+        area([motions(i,1) motions(i,2)], [magnitude, magnitude], 'FaceColor', 'y', 'LineStyle', 'none');
+        area([motions(i,1) motions(i,2)], [-magnitude, -magnitude], 'FaceColor', 'y', 'LineStyle', 'none');
+    elseif (motions(i,3) == 7)
+        area([motions(i,1) motions(i,2)], [magnitude, magnitude], 'FaceColor', 'c', 'LineStyle', 'none');
+        area([motions(i,1) motions(i,2)], [-magnitude, -magnitude], 'FaceColor', 'c', 'LineStyle', 'none');
+    end
+end
 
 %make this general
 noSubPlots = size(data,2);
@@ -59,8 +66,14 @@ if (displayAllChannels)
         end
     end
 else
+    %autoStimStart = find(s(:,4));
+    %manualStimStart = find(s(:,3));
+    %axis([autoStimStart(1)-100 autoStimStart(8)+400 -0.2 0.2]);
+  
        % hold on
         dataPlot = plot(data(:,channel));
+        %plot(15356,0,'r*');
+
         %dataPlot.LineWidth = 1;
         %Triggers
         plot(s_for_plot) 

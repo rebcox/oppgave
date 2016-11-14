@@ -1,10 +1,10 @@
 %This script makes ten lists:
 % - dodRight, dodLeft, dodDown, dodUp, dodYawn
 % - hboRight, hboLeft, hboDown, hboUp, hboYawn
+% for channel
 
+nirsFile =  'cw012.nirs'
 channel = 1;
-
-nirsFile =  'cw025.nirs';
 load(nirsFile,'-mat');
 ppf = [6 6]; % partial pathlength factors for each wavelength.
 fs = 1/(t(2)-t(1));  % sampling frequency of the data

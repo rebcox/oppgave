@@ -1,7 +1,23 @@
-function time = frameNumberToTime(frameNumber,fs)
+function time = frameNumberToTime(frameNumber,fs, participantNo)
 
-secondsTotal = round(-34.54 + frameNumber/fs); %part12
-secondsTotal = round(126.72 + frameNumber/fs); %part25
+if(participantNo == 8)
+    secondsTotal = round(-14.8 + frameNumber/fs); %part8
+elseif(participantNo == 11)
+    secondsTotal = round(-26.2 + frameNumber/fs); %part11
+elseif(participantNo == 12)
+    secondsTotal = round(-34.5 + frameNumber/fs); %part12
+elseif(participantNo == 17)
+    secondsTotal = round(-389.1 + frameNumber/fs); %part17
+elseif(participantNo == 19)
+    secondsTotal = round(-225.7 + frameNumber/fs); %part24
+elseif(participantNo == 24)
+    secondsTotal = round(-13.5 + frameNumber/fs); %part24
+elseif(participantNo == 25)
+    secondsTotal = round(126.7 + frameNumber/fs); %part25
+else
+    disp('Participant number not synchronized yet');
+    secondsTotal = 0;
+end
 
 minutes = floor(secondsTotal/60);
 seconds = mod(secondsTotal, 60);
